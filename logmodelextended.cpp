@@ -38,7 +38,12 @@ void LogModelExtended::createLogForIncomingFiles(const QString &description, con
     createLogForIncomingFiles(QDateTime::currentDateTime(),description,fileLogId);
 }
 
-void LogModelExtended::addFileInLog(const QString &fileLogId, const QString &filePath){}
+void LogModelExtended::addFileInLog(const QString &fileLogId, const QString &filePath){
+    QMimeDatabase db;
+    QMimeType mime = db.mimeTypeForFile(filePath);
+    QFileIconProvider iconProvider;
+    QIcon fileIcon = iconProvider.icon(filePath);
+}
 
 QIcon LogModelExtended::getIcon(int type){
     const static QIcon message(":/Icons/message_16.png");
