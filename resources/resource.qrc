@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Icons/error.png</file>
+        <file>Icons/error_16.png</file>
+        <file>Icons/message.png</file>
+        <file>Icons/message_16.png</file>
+        <file>Icons/warning.png</file>
+        <file>Icons/warning_16.png</file>
+    </qresource>
+</RCC>
