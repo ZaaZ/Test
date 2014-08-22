@@ -9,7 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);    
     logs = new LogModelExtended(this);
     ui->treeView->setModel(logs);
-    logs->addStandardMessage("Prowerka",1,2);
+    logs->addStandardMessage(trUtf8("Prowerka Info"),1,0);
+    logs->addStandardMessage(trUtf8("Проверка Warning"),1,1);
+    logs->addStandardMessage(trUtf8("Проверка Error"),1,2);
 }
 
 MainWindow::~MainWindow()

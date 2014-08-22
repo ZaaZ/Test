@@ -8,15 +8,17 @@ LogModelExtended::LogModelExtended(QObject *parent) :
 void LogModelExtended::addStandardMessage(const QDateTime &time, const QString &text, int moduleType, int type)
 {
 
-    QStandardItem *__item = new QStandardItem(time.toString("[dd.MM.yyyy hh:mm:ss]"));
-    __item->setEditable(false);
-    QStandardItem *__item2 = new QStandardItem(text);
-    __item2->setEditable(false);
-    __item2->setData(moduleType, Qt::UserRole + 1);
-    __item2->setData(type, Qt::UserRole + 2);
-    __item2->setToolTip(QString("<table><tr><td>").append(text).append("</td></td></table>"));
+    QStandardItem *item = new QStandardItem(time.toString("[dd.MM.yyyy hh:mm:ss]"));
+    item->setEditable(false);
+    QStandardItem *item2 = new QStandardItem(text);
+    item2->setEditable(false);
+    item2->setForeground(getColor(type));
+    item2->setIcon(getIcon(type));
+    item2->setData(moduleType, Qt::UserRole + 1);
+    item2->setData(type, Qt::UserRole + 2);
+    item2->setToolTip(QString("<table><tr><td>").append(text).append("</td></td></table>"));
 
-    this->appendRow(QList<QStandardItem*>() << __item << __item2);
+    this->appendRow(QList<QStandardItem*>() << item << item2);
 }
 
 void LogModelExtended::addStandardMessage(const QString &text, int moduleType, int type)
@@ -35,3 +37,42 @@ void LogModelExtended::createLogForIncomingFiles(const QDateTime &time, const QS
 void LogModelExtended::createLogForIncomingFiles(const QString &description, const QString &fileLogId){}
 
 void LogModelExtended::addFileInLog(const QString &fileLogId, const QString &filePath){}
+
+QIcon LogModelExtended::getIcon(int type){
+    const static QIcon message(":/Icons/message_16.png");
+    const static QIcon warning(":/Icons/warning_16.png");
+    const static QIcon error(":/Icons/error_16.png");
+
+    switch(type)
+    {
+    case 0:
+    {
+        return message;
+        break;
+    }
+    case 1:
+    {
+        return warning;
+        break;
+    }
+    case 2:
+    {
+        return error;
+        break;
+    }
+    default:
+        return message;
+        break;
+    }
+}
+
+QBrush LogModelExtended::getColor(int type) {
+    if (type == 2) {
+        return QBrush(Qt::red);
+    }
+    else if (type == 1) {
+        return QBrush(QColor(0xda, 0xa5, 0x20));
+    }
+    return QBrush(Qt::black);
+}
+

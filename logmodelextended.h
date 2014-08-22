@@ -16,6 +16,9 @@ public:
 
     //.....
 
+    QIcon getIcon(int type);
+    QBrush getColor(int type);
+
 signals:
 
 public slots:
