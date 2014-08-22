@@ -34,7 +34,9 @@ void LogModelExtended::addInformMessage(const QString &text){
 
 void LogModelExtended::createLogForIncomingFiles(const QDateTime &time, const QString &description, const QString &fileLogId){}
 
-void LogModelExtended::createLogForIncomingFiles(const QString &description, const QString &fileLogId){}
+void LogModelExtended::createLogForIncomingFiles(const QString &description, const QString &fileLogId){
+    createLogForIncomingFiles(QDateTime::currentDateTime(),description,fileLogId);
+}
 
 void LogModelExtended::addFileInLog(const QString &fileLogId, const QString &filePath){}
 
